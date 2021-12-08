@@ -22,6 +22,7 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    List myContacts = listOfContacts;
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
@@ -43,7 +44,7 @@ class HomePage extends StatelessWidget {
         ],
       ),
       body: ListView.builder(
-          itemCount: 10,
+          itemCount: myContacts.length,
           itemBuilder: (BuildContext context, index) {
             return Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -73,18 +74,22 @@ class HomePage extends StatelessWidget {
                   ),
                 InkWell(
                   onTap: () {
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => ContactPage()));
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => ContactPage(
+                                  myContact: myContacts[index],
+                                )));
                   },
-                  child: const ListTile(
+                  child: ListTile(
                     leading: CircleAvatar(
-                      backgroundImage: AssetImage("images/images.jfif"),
+                      backgroundImage: NetworkImage(myContacts[index]["image"]),
                     ),
                     title: Text(
-                      "Joradunee Ent.",
+                      myContacts[index]["name"],
                       style: TextStyle(fontWeight: FontWeight.w800),
                     ),
-                    subtitle: Text("+233 0553826410"),
+                    subtitle: Text(myContacts[index]["phone"]),
                     trailing: Icon(Icons.more_horiz),
                   ),
                 ),
@@ -106,3 +111,70 @@ class HomePage extends StatelessWidget {
     );
   }
 }
+
+List listOfContacts = [
+  {
+    "name": "Iddrisu Aminu",
+    "location": "Gudaayiri",
+    "email": "iddrisuaminuict@gmail.com",
+    "phone": "0553826410",
+    "group": "Joradunee family",
+    "image": "https://picsum.photos/200/300?random=56",
+  },
+  {
+    "name": "Kojo",
+    "location": "Tampala",
+    "email": "iddrisuaminuict@gmail.com",
+    "phone": "0553826410",
+    "group": "Joradunee family",
+    "image": "https://picsum.photos/200/300?random=5",
+  },
+  {
+    "name": "Abu Naeem",
+    "location": "Gudaayiri",
+    "email": "iddrisuaminuict@gmail.com",
+    "phone": "0553826410",
+    "group": "Joradunee family",
+    "image": "https://picsum.photos/200/300?random=45",
+  },
+  {
+    "name": "Sayibu Kobena",
+    "location": "Nyagli",
+    "email": "iddrisuaminuict@gmail.com",
+    "phone": "055382445",
+    "group": "Joradunee family",
+    "image": "https://picsum.photos/200/300?random=90",
+  },
+  {
+    "name": "Sayibu Kobena",
+    "location": "Slinvaala",
+    "email": "iddrisuaminuict@gmail.com",
+    "phone": "055382467",
+    "group": "Joradunee family",
+    "image": "https://picsum.photos/200/300?random=9",
+  },
+  {
+    "name": "Suglo Bajaasoma",
+    "location": "Yaruu",
+    "email": "iddrisuaminuict@gmail.com",
+    "phone": "055382400",
+    "group": "Joradunee family",
+    "image": "https://picsum.photos/200/300?random=3",
+  },
+  {
+    "name": "Alhassan Musaariku",
+    "location": "Konfaabiila",
+    "email": "iddrisuaminuict@gmail.com",
+    "phone": "055382400",
+    "group": "Joradunee family",
+    "image": "https://picsum.photos/200/300?random=8",
+  },
+  {
+    "name": "Ansoyala Nenbataanee",
+    "location": "Goringo",
+    "email": "iddrisuaminuict@gmail.com",
+    "phone": "055382400",
+    "group": "Joradunee family",
+    "image": "https://picsum.photos/200/300?random=56",
+  },
+];

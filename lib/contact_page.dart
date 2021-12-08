@@ -2,8 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class ContactPage extends StatelessWidget {
-  const ContactPage({Key? key}) : super(key: key);
-
+  const ContactPage({Key? key, required this.myContact}) : super(key: key);
+  final myContact;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -21,24 +21,24 @@ class ContactPage extends StatelessWidget {
           Card(
             elevation: 5,
             shadowColor: Colors.black,
-            margin: const EdgeInsets.all(0),
+            margin: EdgeInsets.all(0),
             child: Column(
-              children: const [
+              children: [
                 SizedBox(
                   height: 20,
                 ),
                 CircleAvatar(
                   radius: 50,
-                  backgroundImage: AssetImage("images/Amin-1.jpg"),
+                  backgroundImage: NetworkImage(myContact["image"]),
                 ),
                 SizedBox(
                   height: 20,
                 ),
                 Text(
-                  "IDDRISU AMINU",
+                  myContact["name"],
                   style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                 ),
-                Text(" WA  East  East Region"),
+                Text(myContact["location"]),
                 SizedBox(
                   height: 20,
                 ),
